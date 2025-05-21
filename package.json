@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "start": "node src/app.js",
-    "dev": "nodemon src/app.js"
+    "dev": "nodemon src/app.js",
+    "docker:build": "docker build -t nhl-tracker .",
+    "docker:run": "docker run --name nhl-tracker --network local-network -p 3001:3001 nhl-tracker"
   },
   "dependencies": {
     "dotenv": "^10.0.0",

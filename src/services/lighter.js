@@ -1,12 +1,14 @@
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
-dotenv.config({path: '../.env'});
+dotenv.config();
 
 class LighterService {
-    
+    LIGHTER_API_URL;
 
     constructor() {
-        this.LIGHTER_API_URL = process.env.LIGHTER_API_URL || 'http://localhost:3000';
+        
+        this.LIGHTER_API_URL = process.env.LIGHTER_API_URL;
+        console.log('LIGHTER_API_URL:', this.LIGHTER_API_URL);
     }
 
     async getLighterLive(){
@@ -15,10 +17,27 @@ class LighterService {
             if (!response.ok) {
                 throw new Error(`Error fetching lighter live data: ${response.statusText}`);
             }
-            const data = await response.json();
-            return data;
+            return response;
         } catch (error) {
             console.error('Error fetching lighter live data:', error);
+            throw error;
+        }
+    }
+
+    async triggerGoalLights(){
+        try {
+            const response = await fetch(`${this.LIGHTER_API_URL}/goal`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            if (!response.ok) {
+                throw new Error(`Error triggering goal lights: ${response.statusText}`);
+            }
+            return response;
+        } catch (error) {
+            console.error('Error triggering goal lights:', error);
             throw error;
         }
     }

@@ -2,6 +2,7 @@ import HealthController from '../controllers/healthcontroller.js';
 function setRoutes(app) {
     const healthController = new HealthController();
     app.get('/live', healthController.livecheck);
+    app.get('/smoketest', healthController.smoketest);
 }
 
 
