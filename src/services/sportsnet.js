@@ -38,7 +38,7 @@ class SportsNetService{
             console.log('game data' + JSON.stringify(data));
             console.log('away team' + data.data.game.visiting_team.short_name);
             console.log('home team' + data.data.game.home_team.short_name);
-            this.leafsHome = data.data.game.home_team.short_name == 'TOR';
+            this.leafsHome = data.data.game.home_team.short_name == 'EDM';
             this.homeScore = data.data.game.home_team.score;        
             this.awayScore = data.data.game.visiting_team.score;
             if(this.leafsHome){
@@ -79,9 +79,9 @@ class SportsNetService{
     updateLog(){
         const timestamp = new Date().toISOString();
         if(this.leafsHome){
-            console.log(`${timestamp} - Leafs Score: ${this.homeScore} | Opponent Score: ${this.awayScore}`);
+            console.log(`${timestamp} - Oilers Score: ${this.homeScore} | Opponent Score: ${this.awayScore}`);
         }else{
-            console.log(`${timestamp} - Opponent Score: ${this.homeScore} | Leafs Score: ${this.awayScore}`);
+            console.log(`${timestamp} - Opponent Score: ${this.homeScore} | Oilers Score: ${this.awayScore}`);
         }
     }
 
